@@ -302,43 +302,105 @@ export default function HomePage() {
       </section>
 
       {/* Services Section */}
-      <section ref={servicesRef} className="relative z-10 bg-white py-20">
-        <div className="max-w-7xl mx-auto px-6">
+      <section
+        ref={servicesRef}
+        className="relative z-10 bg-gradient-to-br from-gray-50 via-white to-green-50 py-20 overflow-hidden"
+      >
+        {/* Background decorative elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-10 left-10 w-20 h-20 bg-green-200 rounded-full opacity-20 animate-float"></div>
+          <div className="absolute top-32 right-20 w-16 h-16 bg-green-300 rounded-full opacity-30 animate-float-delayed"></div>
+          <div className="absolute bottom-20 left-1/4 w-12 h-12 bg-green-400 rounded-full opacity-25 animate-float"></div>
+          <div className="absolute bottom-32 right-1/3 w-24 h-24 bg-green-200 rounded-full opacity-20 animate-float-delayed"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div
-            className={`text-center mb-16 transition-all duration-1000 ${servicesInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+            className={`text-center mb-20 transition-all duration-1000 ${servicesInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
           >
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-              Services That <span className="text-green-600">Drive Growth</span>
+            <div className="inline-flex items-center gap-2 bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-medium mb-4">
+              <Zap className="w-4 h-4" />
+              Core Services
+            </div>
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+              Services That{" "}
+              <span className="text-green-600 relative">
+                Drive Growth
+                <div className="absolute -bottom-2 left-0 right-0 h-3 bg-green-200 opacity-30 rounded-full"></div>
+              </span>
             </h2>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-              Comprehensive marketing solutions designed to accelerate your business growth
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+              Comprehensive marketing solutions designed to accelerate your business growth and maximize ROI
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
             {services.map((service, index) => (
               <Card
                 key={index}
-                className={`text-center p-8 hover:shadow-lg transition-all duration-500 transform hover:-translate-y-2 ${
+                className={`group relative overflow-hidden bg-white/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-2xl transition-all duration-700 transform hover:-translate-y-4 hover:rotate-1 ${
                   servicesInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                 }`}
                 style={{ transitionDelay: `${index * 200}ms` }}
               >
-                <CardContent className="p-0">
-                  <div className="mb-6 transform hover:scale-110 transition-transform duration-300">{service.icon}</div>
-                  <h3 className="font-bold text-xl mb-4">{service.title}</h3>
-                  <p className="text-gray-600">{service.description}</p>
+                {/* Card background gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white via-green-50/30 to-green-100/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                {/* Animated border */}
+                <div className="absolute inset-0 bg-gradient-to-r from-green-400 via-green-500 to-green-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg"></div>
+                <div className="absolute inset-[2px] bg-white rounded-lg"></div>
+
+                <CardContent className="relative z-10 p-8 text-center">
+                  {/* Icon container with animation */}
+                  <div className="relative mb-8">
+                    <div className="w-20 h-20 mx-auto bg-gradient-to-br from-green-100 to-green-200 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-12 transition-all duration-500 shadow-lg">
+                      <div className="transform group-hover:scale-110 transition-transform duration-300">
+                        {service.icon}
+                      </div>
+                    </div>
+                    {/* Floating particles */}
+                    <div className="absolute -top-2 -right-2 w-3 h-3 bg-green-400 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity duration-500"></div>
+                    <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-green-500 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-opacity duration-700"></div>
+                  </div>
+
+                  <h3 className="font-bold text-xl lg:text-2xl mb-4 text-gray-900 group-hover:text-green-700 transition-colors duration-300">
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed mb-6 group-hover:text-gray-700 transition-colors duration-300">
+                    {service.description}
+                  </p>
+
+                  {/* Animated CTA */}
+                  <div className="opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="text-green-600 hover:text-green-700 hover:bg-green-50 font-medium"
+                    >
+                      Learn More{" "}
+                      <ArrowRight className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform duration-300" />
+                    </Button>
+                  </div>
+
+                  {/* Mobile tap indicator */}
+                  <div className="md:hidden absolute top-4 right-4 w-8 h-8 bg-green-100 rounded-full flex items-center justify-center opacity-60">
+                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                  </div>
                 </CardContent>
+
+                {/* Mobile touch animation */}
+                <div className="md:hidden absolute inset-0 bg-gradient-to-r from-green-400/10 via-green-500/10 to-green-600/10 opacity-0 active:opacity-100 transition-opacity duration-200 rounded-lg"></div>
               </Card>
             ))}
           </div>
 
           <div
-            className={`text-center mt-12 transition-all duration-1000 delay-600 ${servicesInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+            className={`text-center mt-16 transition-all duration-1000 delay-600 ${servicesInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
           >
             <Link href="/services">
-              <Button className="bg-green-600 hover:bg-green-700 text-white font-medium px-8 py-3 transform hover:scale-105 transition-all duration-200">
-                View All Services <ArrowRight className="w-4 h-4 ml-2" />
+              <Button className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-medium px-10 py-4 text-lg rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 group">
+                View All Services
+                <ArrowRight className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" />
               </Button>
             </Link>
           </div>
